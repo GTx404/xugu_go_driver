@@ -55,14 +55,6 @@ func sockSendPutStatement(pConn *xuguConn, sql []byte, values *[]xuguValue, para
 	binary.BigEndian.PutUint32(Param_num[:], uint32(paramCount))
 	pConn.sendBuff.Write(Param_num[:])
 	if values != nil {
-		//当缓冲区大于8190字节时，直接发送
-		// if pConn.sendBuff.Len() > 8190 {
-		// 	_, err := pConn.conn.Write(pConn.sendBuff.Bytes())
-		// 	if err != nil {
-		// 		rintln("sockSend Write failed: ", err)
-		// 		return err
-		// 	}
-		// }
 
 		//发送后续参数
 		//	Param_num   { Param_name_len Param_name Param_INOUT Param_DType Param_Data_Len Param_Data }
